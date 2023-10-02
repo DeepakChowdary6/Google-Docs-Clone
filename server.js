@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const Document=require('./Document');
 try {
 
-    mongoose.connect(process.env.MONGO_URI, {
+    mongoose.connect('mongodb+srv://deepak:p4biHpYKxcND1G7b@cluster0.7aofybd.mongodb.net/', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -20,7 +20,7 @@ try {
 
 const io = require('socket.io')(server,{
     cors: {
-        origin: process.env.ORIGIN,
+        origin: 'https://google-docs-client.vercel.app/',
         methods: ['GET', 'POST'],
     },
 }); // Attach socket.io to the server
