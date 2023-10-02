@@ -8,8 +8,8 @@
     "socket.io": "^4.7.2"
   },
   "scripts": {
-    "start": "node server.js",
-    "devstart": "nodemon server.js"
+    "start": "nodemon server.js"
+
   },
   "name": "server",
   "version": "1.0.0",
