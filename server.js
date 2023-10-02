@@ -20,7 +20,7 @@ try {
 
 const io = require('socket.io')(server,{
     cors: {
-        origin: 'http://localhost:3000',
+        origin: process.env.ORIGIN,
         methods: ['GET', 'POST'],
     },
 }); // Attach socket.io to the server
