@@ -1,13 +1,19 @@
 require('dotenv').config();
 const express = require('express');
+const fs = require('fs');
 const http = require('http');// Import the http module
 const app = express();
-const server = http.createServer(app); // Create an HTTP server
+const httpsOptions = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+};
+const server = http.createServer(httpsOptions,app); // Create an HTTP server
 const mongoose = require('mongoose')
 const Document=require('./Document');
+mongoose.set('strictQuery', true);
 try {
 
-    mongoose.connect('mongodb+srv://deepak:p4biHpYKxcND1G7b@cluster0.7aofybd.mongodb.net/', {
+    mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -20,12 +26,12 @@ try {
 
 const io = require('socket.io')(server,{
     cors: {
-        origin: 'https://google-docs-client.vercel.app/',
+        origin: process.env.ORIGIN,
         methods: ['GET', 'POST'],
     },
 }); // Attach socket.io to the server
 
-server.listen(3000,'0.0.0.0'); // Listen on port 3000
+server.listen(3000); // Listen on port 3000
 
 const defaultValue="";
 
