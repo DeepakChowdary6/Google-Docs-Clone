@@ -25,7 +25,7 @@ const io = require('socket.io')(server,{
     },
 }); // Attach socket.io to the server
 
-server.listen(3001); // Listen on port 3001
+server.listen(3000,'0.0.0.0'); // Listen on port 3000
 
 const defaultValue="";
 
